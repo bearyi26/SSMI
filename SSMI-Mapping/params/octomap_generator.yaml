@@ -14,4 +14,4 @@ octomap:
     publish_2d_map: true
     min_ground_z: 1
     max_ground_z: 3.5
-    save_path: /address/to/save/map.ot
+    save_path: /home/huayitang/SSMI/map.ot

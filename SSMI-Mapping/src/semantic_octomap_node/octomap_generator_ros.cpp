@@ -214,7 +214,9 @@ void OctomapGeneratorNode::publish2DOccupancyMap(const SemanticOctree* octomap,
       }
     }
   }
-
+  ros::Duration time_diff = ros::Time::now() - last_update_;
+  ROS_INFO("Time Diff:%4.3f", time_diff.toSec());
+  last_update_ = ros::Time::now();
   occ_map_pub_.publish(*occupancy_map);
 }
 

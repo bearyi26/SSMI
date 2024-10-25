@@ -3,6 +3,8 @@ project(semantic_octomap)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # SET OCTOMAP_OMP to disable/enable OPENMP (experimental for octomap, default disabled)
 SET(OCTOMAP_OMP FALSE CACHE BOOL "Enable/disable OpenMP parallelization")
 IF(DEFINED ENV{OCTOMAP_OMP})
@@ -94,6 +96,7 @@ install(DIRECTORY
 catkin_install_python(PROGRAMS
   scripts/ssmi_sensors/semantic_sensor_node.py
   scripts/ssmi_sensors/semantic_sensor.py
+  scripts/ssmi_sensors/segmentation.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 install(TARGETS semantic_octomap_node semantic_octomap

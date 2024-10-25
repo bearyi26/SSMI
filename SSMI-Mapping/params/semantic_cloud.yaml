@@ -9,12 +9,13 @@ camera:
   height: 480
 
 semantic_pcl:
-  color_image_topic: "/rgbd_camera/image"
+  color_image_topic: "/camera/color/image_raw"
   semantic_image_topic: "/semantic/colored_map"
-  depth_image_topic: "/rgbd_camera/depth_image"
+  depth_image_topic: "/camera/aligned_depth_to_color/image_raw"
   point_type: 0
-  frame_id: "camera_optic"
+  frame_id: "camera_color_optical_frame"
   depth_noise_std: 0.0
   true_class_prob: 1.0
   # set unit_conversion to 1000 if the depth image is in mm
-  unit_conversion: 1.0
+  unit_conversion: 1000.0
+

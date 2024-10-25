@@ -61,7 +61,7 @@ class SemanticCloud:
 
         # Take in color image, semantic image, and depth image with a limited time gap between message time stamps
         self.ts = message_filters.ApproximateTimeSynchronizer([self.color_sub, self.semantic_sub, self.depth_sub],
-                                                              queue_size = 1, slop = 0.3)
+                                                              queue_size = 10000, slop = 0.3)
         self.ts.registerCallback(self.color_semantic_depth_callback)
         self.cloud_generator = SemanticPclGenerator(intrinsic, self.img_width,self.img_height, unit_conversion, frame_id,
                                                     self.point_type)
