@@ -1,6 +1,6 @@
 [submodule "SSMI-Planning/deps/pybind11"]
 	path = SSMI-Planning/deps/pybind11
 	url = https://github.com/pybind/pybind11.git
-[submodule "SSMI-Mapping/scripts/ssmi_sensor/MaskFormer"]
-	path = SSMI-Mapping/scripts/ssmi_sensor/MaskFormer
+[submodule "SSMI-Mapping/scripts/ssmi_sensors/MaskFormer"]
+	path = SSMI-Mapping/scripts/ssmi_sensors/MaskFormer
 	url = https://github.com/bearyi26/MaskFormer.git
