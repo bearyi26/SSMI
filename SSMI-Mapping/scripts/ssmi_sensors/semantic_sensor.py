@@ -68,6 +68,7 @@ class SemanticPclGenerator:
         \param depth_img (numpy array float32 2d)
         [x, y, Z] = [X, Y, Z] * intrinsic.T
         """
+        np.place(depth_img, depth_img > 5000.0, 100000)  # Optional: replace with 100000 if preferred
         np.place(depth_img, depth_img == 0, 100000) # Handle maximum range measurements
         
         bgr_img = bgr_img.view('<u1')

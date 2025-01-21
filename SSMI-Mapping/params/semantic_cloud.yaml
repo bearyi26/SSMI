@@ -1,9 +1,13 @@
 # Camera intrinsic matrix parameters
 camera:
-  fx: 320
-  fy: 320
-  cx: 320
-  cy: 240
+  # fx: 320
+  # fy: 320
+  # cx: 320
+  # cy: 240
+  fx: 386.10760498046875
+  fy: 385.4769592285156
+  cx: 325.18548583984375
+  cy: 239.6008758544922
 
   width: 640
   height: 480

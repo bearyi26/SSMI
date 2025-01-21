@@ -62,8 +62,13 @@ void OctomapGenerator<CLOUD, OCTREE>::insertPointCloud(const pcl::PCLPointCloud2
     int endpoint_count = 0; // total number of endpoints inserted
     for(typename CLOUD::const_iterator it = pcl_cloud.begin(); it != pcl_cloud.end(); ++it)
     {
+        bool is_valid = false;
+        if (it->intensity == 0.0f || it->intensity == 3.0f || it->intensity == 5.0f || it->intensity == 7.0f || it->intensity == 8.0f || it->intensity == 4.0f || it->intensity == 2.0f || it->intensity == 6.0f)
+        {
+            is_valid = true;
+        }
         // Check if the point is invalid
-        if (!std::isnan(it->x) && !std::isnan(it->y) && !std::isnan(it->z))
+        if (!std::isnan(it->x) && !std::isnan(it->y) && !std::isnan(it->z) && is_valid)
         {
             float dist = sqrt((it->x - origin.x())*(it->x - origin.x()) + (it->y - origin.y())*(it->y - origin.y()) + (it->z - origin.z())*(it->z - origin.z()));
             // Check if the point is in max_range
@@ -72,11 +77,55 @@ void OctomapGenerator<CLOUD, OCTREE>::insertPointCloud(const pcl::PCLPointCloud2
                 octomap::ColorOcTreeNode::Color color_obs(it->r, it->g, it->b);
                 octomap::ColorOcTreeNode::Color class_obs;
                 // Get semantics
-                uint32_t rgb;
-                std::memcpy(&rgb, &it->semantic_color, sizeof(uint32_t));
-                class_obs.r = (rgb >> 16) & 0x0000ff;
-                class_obs.g = (rgb >> 8)  & 0x0000ff;
-                class_obs.b = (rgb)       & 0x0000ff;
+                // uint32_t rgb;
+                // std::memcpy(&rgb, &it->intensity, sizeof(uint32_t));
+                int intensity_rounded = static_cast<int>(it->intensity);
+                switch (intensity_rounded)
+                {
+                    case 0: // Intensity 0: Black (0, 0, 0)
+                        class_obs.r = 0;
+                        class_obs.g = 0;
+                        class_obs.b = 0;
+                        break;
+                    case 3: // Intensity 3: Blue (0, 0, 255)
+                        class_obs.r = 0;
+                        class_obs.g = 0;
+                        class_obs.b = 255;
+                        break;
+                    case 5: // Intensity 5: Green (0, 255, 0)
+                        class_obs.r = 0;
+                        class_obs.g = 255;
+                        class_obs.b = 0;
+                        break;
+                    case 7: // Intensity 7: Red (255, 0, 0)
+                        class_obs.r = 255;
+                        class_obs.g = 0;
+                        class_obs.b = 0;
+                        break;
+                    case 8: // Intensity 8: Yellow (255, 255, 0)
+                        class_obs.r = 255;
+                        class_obs.g = 255;
+                        class_obs.b = 0;
+                        break;
+                    case 4: // Intensity 4: Cyan (0, 255, 255)
+                        class_obs.r = 0;
+                        class_obs.g = 255;
+                        class_obs.b = 255;
+                        break;
+                    case 2: // Intensity 2: Magenta (255, 0, 255)
+                        class_obs.r = 255;
+                        class_obs.g = 0;
+                        class_obs.b = 255;
+                        break;
+                    case 6: // Intensity 6: White (255, 255, 255)
+                        class_obs.r = 255;
+                        class_obs.g = 165;
+                        class_obs.b = 0;
+                        break;
+                }
+                // class_obs.r = (rgb >> 16) & 0x0000ff;
+                // class_obs.g = (rgb >> 8)  & 0x0000ff;
+                // class_obs.b = (rgb)       & 0x0000ff;
             
                 octomap_.updateNode(it->x, it->y, it->z, true, class_obs, color_obs, false);
             

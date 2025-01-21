@@ -11,7 +11,7 @@ struct PointXYZRGBSemantic
     PCL_ADD_RGB;
     union  // Semantic color
     {
-        float semantic_color;
+        float intensity;
     };
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW   // make sure our new allocators are aligned
 } EIGEN_ALIGN16;                      // enforce SSE padding for correct memory alignment
@@ -22,7 +22,7 @@ POINT_CLOUD_REGISTER_POINT_STRUCT (PointXYZRGBSemantic,
 (float, y, y)
 (float, z, z)
 (float, rgb, rgb)
-(float, semantic_color, semantic_color)
+(float, intensity, intensity)
 )
 
 #endif //SEMANTIC_OCTOMAP_SEMANTIC_POINT_TYPE_H
