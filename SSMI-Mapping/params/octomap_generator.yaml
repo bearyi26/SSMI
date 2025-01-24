@@ -1,6 +1,6 @@
 octomap:
     pointcloud_topic: "/os_node/segmented_point_cloud_no_destagger"
-    world_frame_id: "odom"
+    world_frame_id: "quadrotor/map"
     resolution: 0.5
     # Max range of mapping (Hence setting 100m works)
     # max_range: 15.0

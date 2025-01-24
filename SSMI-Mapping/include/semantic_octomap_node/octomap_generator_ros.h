@@ -74,7 +74,7 @@ protected:
     double min_ground_z;
     double max_ground_z;
     octomap_msgs::Octomap map_msg_; ///<ROS octomap message
-    ros::Time last_update_; // Time of last update
+    ros::WallTime last_update_; // Time of last update
 };
 
 #endif //SEMANTIC_OCTOMAP_OCTOMAP_GENERATOR_ROS_H

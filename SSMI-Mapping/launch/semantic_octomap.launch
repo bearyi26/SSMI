@@ -9,7 +9,7 @@
   <rosparam file="$(find semantic_octomap)/params/octomap_generator.yaml" command="load"/>
   <node pkg="semantic_octomap" type="semantic_octomap_node" name="semantic_octomap" output="screen"/>
 
-  <arg name="bag_file" default="$(find semantic_octomap)/../../DCIST.bag" doc="file name to use for the recorded bag file"/>
+  <!-- <arg name="bag_file" default="$(find semantic_octomap)/../../DCIST.bag" doc="file name to use for the recorded bag file"/> -->
   <!-- <arg name="bag_file" default="" doc="file name to use for the recorded bag file"/> -->
 
   <arg name="body_frame" default="base_link"/>
@@ -19,9 +19,5 @@
 
   <!-- <node pkg="semantic_octomap" type="segmentation.py" name="segmentation" output="screen"/>
     <param name="config_path" value="$(find semantic_octomap)/scripts/ssmi_sensors/MaskFormer/configs/ade20k-150/swin" /> -->
-
-  <arg name="_use_bag_file_name" value="$(eval not (bag_file == ''))"/>
-
-  <node if="$(arg _use_bag_file_name)" pkg="rosbag" type="play" name="rosbag_play_recording" launch-prefix="bash -c 'sleep 3; $0 $@' " args="--clock -r 0.5 $(arg bag_file)"/>
 
 </launch>
